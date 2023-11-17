@@ -241,7 +241,19 @@ void game()
 	}
 	
 }
+void LuuDiem(vector<Score> scores) {
+	// Mở file để ghi
+	ofstream outfile("s.txt");
 
+	// Duyệt qua tất cả các điểm
+	for (Score score : scores) {
+		// Ghi tên người chơi và điểm
+		outfile << score.name << " " << score.score << endl;
+	}
+
+	// Đóng file
+	outfile.close();
+}
 vector<Score> DocDiem() {
 	// Mở file để đọc
 	ifstream infile("s.txt");
