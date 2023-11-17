@@ -171,78 +171,89 @@ void KetThuc()
 "	LuuDiem(scores);"		
 "	"		
 }		
-void Menu()		
-	int x = toaDoX[0];
-	int y = toaDoY[0];
-	while (true)
-	{
-		if (_kbhit())//Kiểm tra xem thằng người dùng có nhập gì ko
+void Menu()
+{
+	ShowCur(0);
+	Logo();
+	ShowLuaChon();
+	int choose = 0;
+	while (true) {
+		if (_kbhit())
 		{
-			char c = _getch();
-			if (c == -32)//vì we set nút điều khiển là phím mũi tên nên theo mã ASCII
+			c = _getch();
+			if (c == '1')
 			{
-				c = _getch();
-				if (c == 72&&check != 0)// cái này là nút đi lên cái &&... là để người dùng không cho rắn đi số lùi :))
+				Logo();
+				ShowLuaChon();
+				ShowMuiten(1);
+				choose = 1;
+			}
+			else if (c == '2')
+			{
+				Logo();
+				ShowLuaChon();
+				ShowMuiten(2);
+				choose =2;
+			}
+			else if (c == '3')
+			{
+				Logo();
+				ShowLuaChon();
+				ShowMuiten(3);
+				choose = 3;
+			}
+			else if (c == '4')
+			{
+				Logo();
+				ShowLuaChon();
+				ShowMuiten(4);
+				choose = 3;
+			}
+			else if (c == 13)
+			{
+				if (choose == 1)
 				{
-					check = 1;// cho con rắn đi lên nếu hắn nhấn
+					system("cls");
+					game();
 				}
-				else if (c == 80&&check!=1)
+				else if (choose == 2)
 				{
-					check = 0;//xuống
+					system("cls");
+					scores = DocDiem();
+					HienThiDiem(scores);
+					break;
 				}
-				else if (c == 75&&check != 2)
+				else if (choose == 3)
 				{
-					check = 3;//trái
+					system("cls");
+					VeKhung();
+					gotoXY(14, 3); cout << "#guide play----" << endl;
+					gotoXY(14, 4); cout << "-Players use keyboard arrow keys to move" << endl;
+					gotoXY(14, 5); cout << "-The goal is to eat '@' to make the snake grow longer, each '@' will add 1 point" << endl;
+					gotoXY(14, 6); cout << "#Note that the snake's speed will have three levels, default level 1" << endl;
+					gotoXY(14, 7); cout << "-Level 2 is unlocked when you earn 20 points" << endl;
+					gotoXY(14, 8); cout << "-Level 3 is unlocked when you earn 40 points (very fast)" << endl;
+					gotoXY(44, 22); cout << "(Press any to exit)" << endl;
+					gotoXY(44, 23); cout << "----@2023-11-11----" << endl;
+					_getch();
+					system("cls");
+					Menu();
+					
+					break;
 				}
-				else if (c == 77&& check != 3)
+				else if (choose == 4)
 				{
-					check = 2;//right
+					system("cls");
+					cout << "Goodbye" << endl;
+					break;
 				}
+
+
 			}
 		}
-		if (check == 0)
-		{
-			y++;
-		}
-		else if (check == 1)
-		{
-			y--;
-		}
-		else if (check == 2)
-		{
-			x++;
-		}
-		else if (check == 3)
-		{
-			x--;
-		}
-		gotoXY(toaDoX[soDotRan], toaDoY[soDotRan]);// xóa khúc thừa
-		cout<<" ";
-		VeRan();
-		if (GameOver())
-		{
-			KetThuc();
-			diemSo = 0;
-			speed = 1;
-			fast = 100;
-			Menu();
-		}
-		XuLyRanAnMoi();
-		if (diemSo == 20)
-		{
-			speed=2;
-			fast =70;
-		}
-		else if (diemSo == 40)
-		{
-			speed = 3;
-			fast = 50;
-		}
-		gotoXY(10, 0); cout << "SCORE:"; gotoXY(17, 0); cout << diemSo;
-		gotoXY(20, 0); cout << "SPEED:"; gotoXY(27, 0); cout << speed;
-		DiChuyenRan(x, y);
-		Sleep(fast);
 	}
+}
+	
 void LuuDiem(vector<Score> scores) {
 	// Mở file để ghi
 	ofstream outfile("s.txt");
@@ -314,6 +325,77 @@ void game()
 	TaoQua();
 	VeQua();
 	int check =2 ;
+	int x = toaDoX[0];
+	int y = toaDoY[0];
+	while (true)
+	{
+		if (_kbhit())//Kiểm tra xem thằng người dùng có nhập gì ko
+		{
+			char c = _getch();
+			if (c == -32)//vì we set nút điều khiển là phím mũi tên nên theo mã ASCII
+			{
+				c = _getch();
+				if (c == 72&&check != 0)// cái này là nút đi lên cái &&... là để người dùng không cho rắn đi số lùi :))
+				{
+					check = 1;// cho con rắn đi lên nếu hắn nhấn
+				}
+				else if (c == 80&&check!=1)
+				{
+					check = 0;//xuống
+				}
+				else if (c == 75&&check != 2)
+				{
+					check = 3;//trái
+				}
+				else if (c == 77&& check != 3)
+				{
+					check = 2;//right
+				}
+			}
+		}
+		if (check == 0)
+		{
+			y++;
+		}
+		else if (check == 1)
+		{
+			y--;
+		}
+		else if (check == 2)
+		{
+			x++;
+		}
+		else if (check == 3)
+		{
+			x--;
+		}
+		gotoXY(toaDoX[soDotRan], toaDoY[soDotRan]);// xóa khúc thừa
+		cout<<" ";
+		VeRan();
+		if (GameOver())
+		{
+			KetThuc();
+			diemSo = 0;
+			speed = 1;
+			fast = 100;
+			Menu();
+		}
+		XuLyRanAnMoi();
+		if (diemSo == 20)
+		{
+			speed=2;
+			fast =70;
+		}
+		else if (diemSo == 40)
+		{
+			speed = 3;
+			fast = 50;
+		}
+		gotoXY(10, 0); cout << "SCORE:"; gotoXY(17, 0); cout << diemSo;
+		gotoXY(20, 0); cout << "SPEED:"; gotoXY(27, 0); cout << speed;
+		DiChuyenRan(x, y);
+		Sleep(fast);
+	}
 }
 
 
