@@ -231,6 +231,18 @@ void game()
 	TaoQua();
 	VeQua();
 	int check =2 ;
+void KetThuc()		
+{		
+"	system(""cls"");"		
+"	VeKhung();"		
+"	string name;"		
+"	gotoXY(40"	 9); cout << "Enter your name:" << endl;	
+"	gotoXY(58"	 9); getline(cin	 name);
+"	scores.push_back({ name"	 diemSo });	
+"	LuuDiem(scores);"		
+"	"		
+}		
+void Menu()		
 	int x = toaDoX[0];
 	int y = toaDoY[0];
 	while (true)
