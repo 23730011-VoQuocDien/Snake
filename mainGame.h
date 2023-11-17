@@ -378,6 +378,7 @@ void game()
 			diemSo = 0;
 			speed = 1;
 			fast = 100;
+			soDotRan=4;
 			Menu();
 		}
 		XuLyRanAnMoi();
