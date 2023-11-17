@@ -160,6 +160,69 @@ void XuLyRanAnMoi()
 		diemSo++;
 	}
 }
+void LuuDiem(vector<Score> scores) {
+	// Mở file để ghi
+	ofstream outfile("s.txt");
+
+	// Duyệt qua tất cả các điểm
+	for (Score score : scores) {
+		// Ghi tên người chơi và điểm
+		outfile << score.name << " " << score.score << endl;
+	}
+
+	// Đóng file
+	outfile.close();
+}
+vector<Score> DocDiem() {
+	// Mở file để đọc
+	ifstream infile("s.txt");
+
+	// Tạo vector để lưu các điểm
+	vector<Score> scores;
+
+	// Duyệt qua tất cả các dòng trong file
+	string line;
+	while (getline(infile, line)) {
+		// Cắt tên người chơi và điểm
+		int space_pos = line.find(" ");
+		string name = line.substr(0, space_pos);
+		int score = stoi(line.substr(space_pos + 1));
+
+		// Thêm điểm vào vector
+		scores.push_back({ name, score });
+	}
+
+	// Đóng file
+	infile.close();
+
+	// Trả về vector các điểm
+	return scores;
+}
+void HienThiDiem(vector<Score> scores) {
+	VeKhung();
+	int i = 5,x=30,x2=60;
+	gotoXY(x, 3); cout << "------------HIGH SCORE--------------" << endl;
+	gotoXY(x, 4); cout << "Name" << endl;
+	gotoXY(x2, 4); cout << "Scores" << endl;
+	for (Score score : scores) {
+		// Hiển thị tên người chơi và điểm
+		gotoXY(x, i);
+		cout << score.name << endl;
+		gotoXY(x2, i); cout << score.score << endl;
+		i++;
+		if (i == 23)
+		{
+			gotoXY(44, i); cout << "-MORE-" << endl;
+			_getch();
+			system("cls");
+			Menu();
+		}
+	}
+	gotoXY(44, 23); cout << "(Press any to exit)" <<endl;
+	_getch();
+	system("cls");
+	Menu();
+}
 void game()
 {
 	ShowCur(0);
@@ -240,69 +303,6 @@ void game()
 		Sleep(fast);
 	}
 	
-}
-void LuuDiem(vector<Score> scores) {
-	// Mở file để ghi
-	ofstream outfile("s.txt");
-
-	// Duyệt qua tất cả các điểm
-	for (Score score : scores) {
-		// Ghi tên người chơi và điểm
-		outfile << score.name << " " << score.score << endl;
-	}
-
-	// Đóng file
-	outfile.close();
-}
-vector<Score> DocDiem() {
-	// Mở file để đọc
-	ifstream infile("s.txt");
-
-	// Tạo vector để lưu các điểm
-	vector<Score> scores;
-
-	// Duyệt qua tất cả các dòng trong file
-	string line;
-	while (getline(infile, line)) {
-		// Cắt tên người chơi và điểm
-		int space_pos = line.find(" ");
-		string name = line.substr(0, space_pos);
-		int score = stoi(line.substr(space_pos + 1));
-
-		// Thêm điểm vào vector
-		scores.push_back({ name, score });
-	}
-
-	// Đóng file
-	infile.close();
-
-	// Trả về vector các điểm
-	return scores;
-}
-void HienThiDiem(vector<Score> scores) {
-	VeKhung();
-	int i = 5,x=30,x2=60;
-	gotoXY(x, 3); cout << "------------HIGH SCORE--------------" << endl;
-	gotoXY(x, 4); cout << "Name" << endl;
-	gotoXY(x2, 4); cout << "Scores" << endl;
-	for (Score score : scores) {
-		// Hiển thị tên người chơi và điểm
-		gotoXY(x, i);
-		cout << score.name << endl;
-		gotoXY(x2, i); cout << score.score << endl;
-		i++;
-		if (i == 23)
-		{
-			gotoXY(44, i); cout << "-MORE-" << endl;
-			_getch();
-			system("cls");
-			Menu();
-		}
-	}
-	gotoXY(44, 23); cout << "(Press any to exit)" <<endl;
-	_getch();
-	system("cls");
-	Menu();
 }
 
 
