@@ -160,6 +160,88 @@ void XuLyRanAnMoi()
 		diemSo++;
 	}
 }
+void game()
+{
+	ShowCur(0);
+	VeKhung();
+	KhoiTaoRan();
+	TaoQua();
+	VeQua();
+	int check =2 ;
+	int x = toaDoX[0];
+	int y = toaDoY[0];
+	while (true)
+	{
+		if (_kbhit())//Kiểm tra xem thằng người dùng có nhập gì ko
+		{
+			char c = _getch();
+			if (c == -32)//vì we set nút điều khiển là phím mũi tên nên theo mã ASCII
+			{
+				c = _getch();
+				if (c == 72&&check != 0)// cái này là nút đi lên cái &&... là để người dùng không cho rắn đi số lùi :))
+				{
+					check = 1;// cho con rắn đi lên nếu hắn nhấn
+				}
+				else if (c == 80&&check!=1)
+				{
+					check = 0;//xuống
+				}
+				else if (c == 75&&check != 2)
+				{
+					check = 3;//trái
+				}
+				else if (c == 77&& check != 3)
+				{
+					check = 2;//right
+				}
+			}
+		}
+		if (check == 0)
+		{
+			y++;
+		}
+		else if (check == 1)
+		{
+			y--;
+		}
+		else if (check == 2)
+		{
+			x++;
+		}
+		else if (check == 3)
+		{
+			x--;
+		}
+		gotoXY(toaDoX[soDotRan], toaDoY[soDotRan]);// xóa khúc thừa
+		cout<<" ";
+		VeRan();
+		if (GameOver())
+		{
+			KetThuc();
+			diemSo = 0;
+			speed = 1;
+			fast = 100;
+			Menu();
+		}
+		XuLyRanAnMoi();
+		if (diemSo == 20)
+		{
+			speed=2;
+			fast =70;
+		}
+		else if (diemSo == 40)
+		{
+			speed = 3;
+			fast = 50;
+		}
+		gotoXY(10, 0); cout << "SCORE:"; gotoXY(17, 0); cout << diemSo;
+		gotoXY(20, 0); cout << "SPEED:"; gotoXY(27, 0); cout << speed;
+		DiChuyenRan(x, y);
+		Sleep(fast);
+	}
+	
+}
+
 //editbasic
 
 
