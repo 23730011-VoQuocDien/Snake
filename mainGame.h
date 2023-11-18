@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include <iostream>
 #include <vector>
 #include <string>
@@ -160,25 +160,6 @@ void XuLyRanAnMoi()
 		diemSo++;
 	}
 }
-bool RanAnMoi()
-{
-	if (toaDoX[0] == xQua && toaDoY[0] == yQua)
-	{
-		return true;
-	}
-	return false;
-}
-void XuLyRanAnMoi()
-{
-	if (RanAnMoi())
-	{
-		soDotRan++;
-		TaoQua();
-		VeQua();
-		diemSo++;
-	}
-}
-
 void Logo()
 {
 	
@@ -250,18 +231,17 @@ void ShowMuiten(int a) {
 		gotoXY(38, 12); cout << "->";
 	}
 }
-
-void KetThuc()		
-{		
-"	system(""cls"");"		
-"	VeKhung();"		
-"	string name;"		
-"	gotoXY(40"	 9); cout << "Enter your name:" << endl;	
-"	gotoXY(58"	 9); getline(cin	 name);
-"	scores.push_back({ name"	 diemSo });	
-"	LuuDiem(scores);"		
-"	"		
-}		
+void KetThuc()
+{
+	system("cls");
+	VeKhung();
+	string name;
+	gotoXY(40, 9); cout << "Enter your name:" << endl;
+	gotoXY(58, 9); getline(cin, name);
+	scores.push_back({ name, diemSo });
+	LuuDiem(scores);
+	
+}
 void Menu()
 {
 	ShowCur(0);
@@ -344,7 +324,6 @@ void Menu()
 		}
 	}
 }
-	
 void LuuDiem(vector<Score> scores) {
 	// Mở file để ghi
 	ofstream outfile("s.txt");
@@ -469,7 +448,7 @@ void game()
 			diemSo = 0;
 			speed = 1;
 			fast = 100;
-			soDotRan=4;
+			soDotRan = 4;
 			Menu();
 		}
 		XuLyRanAnMoi();
@@ -488,4 +467,5 @@ void game()
 		DiChuyenRan(x, y);
 		Sleep(fast);
 	}
+	
 }
