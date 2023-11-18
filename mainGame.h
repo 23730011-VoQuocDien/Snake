@@ -398,5 +398,92 @@ void game()
 		Sleep(fast);
 	}
 }
+bool RanAnMoi()
+{
+	if (toaDoX[0] == xQua && toaDoY[0] == yQua)
+	{
+		return true;
+	}
+	return false;
+}
+void XuLyRanAnMoi()
+{
+	if (RanAnMoi())
+	{
+		soDotRan++;
+		TaoQua();
+		VeQua();
+		diemSo++;
+	}
+}
+void Logo()
+{
+	
+	VeKhung();
+	gotoXY(30, 8);
+	cout << "________________________" << endl;
+	gotoXY(30, 9);
+	// Định nghĩa các ký tự đặc biệt
+	char vertical_line = '||';
+	// Xuất chữ "snake"	
+	cout << vertical_line << " s " << vertical_line << endl;
+	gotoXY(30, 10);
+	cout << vertical_line << " n " << vertical_line << endl;
+	gotoXY(30, 11);
+	cout << vertical_line << " a " << vertical_line << endl;
+	gotoXY(30, 12);
+	cout << vertical_line << " k " << vertical_line << endl;
+	gotoXY(30, 13);
+	cout << vertical_line << " e " << vertical_line << endl;
+	gotoXY(38, 13);
+	cout  << "_-_-_-_-_-_-_" << endl;
+	gotoXY(30, 14);
+	cout << "________________________" << endl;
+	gotoXY(54, 9);
+	cout << "*    * *  *" << endl;
+	gotoXY(54, 10); 
+	cout << "  *   *NEW VERSION  *" << endl;
+	gotoXY(54, 11);
+	cout << "*       *" << endl;
+	gotoXY(54, 12);
+	cout << "    *  2023   * " << endl;
+	gotoXY(54, 13);
+	cout << "*     *   * *" << endl;
 
-
+}
+void ShowLuaChon() {
+	gotoXY(40, 9); cout << "1. New game  " << endl;
+	gotoXY(40, 10); cout << "2. High score" << endl;
+	gotoXY(40, 11); cout << "3. Info    *" << endl;
+	gotoXY(40, 12); cout << "4. Exit  *" << endl;
+}
+void ShowMuiten(int a) {
+	if (a == 1)
+	{
+		gotoXY(38, 9); cout << "->";
+		gotoXY(38, 10); cout << "  ";
+		gotoXY(38, 11); cout << "  ";
+		gotoXY(38, 12); cout << "  ";
+	}
+	else if (a == 2)
+	{
+		gotoXY(38, 9); cout << "  ";
+		gotoXY(38, 10); cout << "->";
+		gotoXY(38, 11); cout << "  ";
+		gotoXY(38, 12); cout << "  ";
+	}
+	else if (a == 3)
+	{
+		gotoXY(38, 9); cout << "  ";
+		gotoXY(38, 10); cout << "  ";
+		gotoXY(38, 11); cout << "->";
+		gotoXY(38, 12); cout << "  ";
+	}
+	else if (a == 4)
+	{
+		gotoXY(38, 9); cout << "  ";
+		gotoXY(38, 10); cout << "  ";
+		gotoXY(38, 11); cout << "  ";
+		gotoXY(38, 12); cout << "->";
+	}
+}
