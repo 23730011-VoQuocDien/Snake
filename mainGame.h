@@ -160,6 +160,25 @@ void XuLyRanAnMoi()
 		diemSo++;
 	}
 }
+bool RanAnMoi()
+{
+	if (toaDoX[0] == xQua && toaDoY[0] == yQua)
+	{
+		return true;
+	}
+	return false;
+}
+void XuLyRanAnMoi()
+{
+	if (RanAnMoi())
+	{
+		soDotRan++;
+		TaoQua();
+		VeQua();
+		diemSo++;
+	}
+}
+
 void Logo()
 {
 	
@@ -468,23 +487,5 @@ void game()
 		gotoXY(20, 0); cout << "SPEED:"; gotoXY(27, 0); cout << speed;
 		DiChuyenRan(x, y);
 		Sleep(fast);
-	}
-}
-bool RanAnMoi()
-{
-	if (toaDoX[0] == xQua && toaDoY[0] == yQua)
-	{
-		return true;
-	}
-	return false;
-}
-void XuLyRanAnMoi()
-{
-	if (RanAnMoi())
-	{
-		soDotRan++;
-		TaoQua();
-		VeQua();
-		diemSo++;
 	}
 }
